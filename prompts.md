@@ -22,7 +22,7 @@ Borra el ejemplo de abajo cuando escribas el primero.
 
 ## Prompt 1
 
-**Modelo:** Opus 5.5M Context
+**Modelo:** Opus 5.5 1M Context
 **Herramienta:** Claude Code
 
 ```

@@ -196,3 +196,5 @@ Sin embargo, el agente amplió el alcance del ticket al crear un formulario comp
 Esta decisión era necesaria para poder implementar el mensaje de error en un frontend que todavía no tenía login, pero muestra que una instrucción escrita en el harness no garantiza por sí sola que el agente interprete el alcance exactamente como lo esperaba el desarrollador.
 
 El harness orientó la ejecución y redujo la necesidad de intervención, pero no eliminó la necesidad de revisar las decisiones tomadas por el agente.
+
+Gracias!

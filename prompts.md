@@ -26,7 +26,17 @@ Borra el ejemplo de abajo cuando escribas el primero.
 **Herramienta:** Claude Code
 
 ```
-Por hacer
+Título:
+Mostrar un mensaje claro cuando falle el inicio de sesión
+
+Descripción:
+Como usuario de FlowSync, quiero recibir un mensaje claro cuando mis credenciales no sean válidas, para entender por qué no pude iniciar sesión.
+
+Criterios de aceptación:
+- Si el inicio de sesión falla por credenciales incorrectas, el usuario debe ver un mensaje visible.
+- El mensaje debe actualizarse o desaparecer cuando vuelva a intentar iniciar sesión.
+- El login válido debe seguir funcionando.
+- Debe respetarse el estilo visual existente.
 ```
 
 **Qué salió:** (opcional, una línea) funcionó a la primera / tuve que insistir / me inventó una ruta que no existe.

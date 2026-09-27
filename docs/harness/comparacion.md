@@ -1,6 +1,6 @@
 # Comparación: con harness vs sin harness
 
-## Ticket utilizado
+## Ticket utilizado .
 
 **Título:** Mostrar un mensaje claro cuando falle el inicio de sesión
 

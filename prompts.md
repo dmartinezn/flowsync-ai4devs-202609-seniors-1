@@ -22,162 +22,147 @@ Borra el ejemplo de abajo cuando escribas el primero.
 
 ## Prompt 1
 
-**Modelo:** Opus 1M xHigh
+**Modelo:** Opus 5.5 1M 
 **Herramienta:** Claude Code
 
 ```
-## Prompt 1 — Terreno existente
+Inspecciona únicamente el vertical de cuentas y acceso de FlowSync.
 
-**Herramienta:** Claude Code  
-**Modelo:** Anthropic Claude 5.5 1M Context
+Quiero documentar el comportamiento actual del sistema, no proponer cambios.
 
-### Prompt
+Cubre solo:
+- registro,
+- inicio de sesión,
+- sesión,
+- perfil.
 
-Antes de definir el MVP de FlowSync, inspecciona el repositorio actual.
+Revisa backend y frontend.
 
-Quiero que me expliques únicamente:
+Devuélveme una primera propuesta de spec en castellano con este formato:
 
-1. Qué capacidades funcionales ya existen en el proyecto.
-2. Cómo es, a alto nivel, el modelo de datos actual.
+## Purpose
 
-Resume el resultado en 3 a 5 líneas.
+## Requirements
 
-No propongas funcionalidades nuevas.
-No definas todavía el MVP.
-No diseñes endpoints, arquitectura ni cambios técnicos.
-Solo describe el terreno que ya existe.
+### Requirement: ...
 
+#### Scenario: ...
+
+- **WHEN** ...
+- **THEN** ...
+
+Reglas obligatorias:
+- describe solo comportamiento observable desde fuera;
+- no menciones nombres de archivos;
+- no menciones nombres de clases;
+- no menciones rutas internas de código;
+- no uses ADDED, MODIFIED ni REMOVED;
+- no propongas cambios;
+- no corrijas el código;
+- no incluyas tareas, proyectos ni otras capacidades fuera de cuentas y acceso.
+
+La spec debe describir lo que el sistema hace hoy..
+```
 
 **Qué salió:** (opcional, una línea) funcionó a la primera / tuve que insistir / me inventó una ruta que no existe.
-```
 
-```
+
 ## Prompt 2
-Quiero definir el MVP de FlowSync a partir de esta idea:
 
-"Quiero que FlowSync sea una herramienta para que los equipos remotos sepan en qué está trabajando cada uno sin tener que hacer reuniones de sincronización. Algo tipo tareas compartidas pero más en tiempo real y menos rollo que Jira."
-
-Antes de proponer cualquier solución, haz exactamente cinco preguntas.
-
-Las preguntas deben ser las cinco que más reduzcan la incertidumbre sobre:
-
-- el problema real que queremos resolver,
-- quién obtiene el valor,
-- cómo se utilizaría el producto,
-- qué significa "más en tiempo real",
-- y cuál debería ser la frontera del MVP.
-
-Haz una sola ronda de cinco preguntas.
-
-No propongas todavía funcionalidades.
-No diseñes el modelo de datos.
-No propongas endpoints.
-No hables de arquitectura ni implementación técnica.
-```
+**Modelo:** Opus 5.5 1M 
+**Herramienta:** Claude Code
 
 ```
-## Prompt 3
-No quiero que propongas funcionalidades, exclusiones ni soluciones todavía.
+Ahora quiero contrastar esta spec contra el código existente.
 
-Quiero únicamente una ronda de EXACTAMENTE cinco preguntas abiertas sobre el producto FlowSync.
+NO modifiques el código y NO reescribas todavía la spec.
 
-Las cinco preguntas deben ayudar a reducir incertidumbre sobre:
+Para cada uno de los 6 Requirements que propusiste:
 
-1. cuál es el problema concreto que duele hoy;
-2. quién obtiene el valor principal;
-3. qué comportamiento o reunión queremos sustituir;
-4. qué significa exactamente "más en tiempo real";
-5. cuál debe ser la frontera del MVP.
+1. Indica qué escenarios puedes confirmar leyendo el código.
+2. Indica cuáles no puedes confirmar con seguridad.
+3. Señala cualquier comportamiento del código que contradiga la spec.
+4. Señala cualquier afirmación de la spec que sea una inferencia y no comportamiento observable.
+5. Indícame exactamente qué parte del código debería revisar yo personalmente para comprobar cada caso.
 
-No uses checkboxes.
-No me des opciones para elegir.
-No propongas funcionalidades.
-No definas el NO-alcance todavía.
-No hables de tablas, modelo de datos, endpoints, arquitectura ni implementación.
+Mantén el análisis limitado al vertical de cuentas y acceso:
+registro, login, sesión y perfil.
 
-Devuelve solamente las cinco preguntas, numeradas del 1 al 5.
+No propongas arreglos.
+No cambies archivos.
+El objetivo es auditar la spec contra el código existente.
 ```
 
-```
-## Prompt 4
-Estas son las respuestas de producto ya decididas para las cinco preguntas.
+### Prompt 3
 
-1. El dolor principal hoy es la daily de sincronización y la pregunta constante de “¿en qué estás?”. El problema aparece cuando dos personas terminan trabajando sobre lo mismo sin saberlo.
-
-2. Quien recibe principalmente el valor son los pares del equipo, no un lead ni un stakeholder. La intención no es crear una herramienta de reporte hacia arriba.
-
-3. La reunión que se quiere reducir o eliminar es la ronda diaria de “¿en qué estás?”. El producto no pretende sustituir toda la coordinación del equipo.
-
-4. “Tiempo real” significa poder ver los cambios de estado de las tareas sin refrescar manualmente. Es frescura del estado de la tarea, no presencia en tiempo real de las personas. La información la actualiza manualmente quien está realizando la tarea.
-
-5. El MVP debe ser una vertical fina y usable de punta a punta. Una tarea necesita como mínimo título, responsable, estado y fecha. La lista se consume principalmente filtrando por estado. El éxito inicial sería que un equipo remoto pequeño pueda dejar de hacer la ronda de “¿en qué estás?” porque la información disponible sea suficientemente fresca y útil.
-
-Contexto adicional ya decidido:
-
-- Equipos remotos pequeños, de 3 a 10 personas.
-- Primer usuario de referencia: un equipo pequeño de producto SaaS distribuido.
-- Un único espacio compartido, sin una entidad compleja de “equipo”.
-- El estado pertenece a la tarea, no a la persona.
-- La señal debe ser un resumen que espera al usuario, no una notificación que interrumpe.
-- FlowSync pretende ser el lugar donde se hace el trabajo, no solo donde se reporta.
-- Quedan fuera del MVP: sprints, estimaciones, épicas, backlog priorizado, notificaciones push, integración con Slack y roles/permisos avanzados.
-- “Menos rollo que Jira” significa que crear una tarea y cambiar su estado debe ser muy rápido.
-
-Con estas respuestas, resume primero los supuestos que detectes. No propongas todavía el alcance final.
+**Modelo:** Opus 5.5 1M 
+**Herramienta:** Claude Code
 
 ```
 
-```
-### Prompt 5
-Continúa con la definición del MVP.
+A partir de la spec original y de la auditoría que acabamos de realizar contra el código,
+reescribe la spec final del vertical de cuentas y acceso.
 
-Toma como hechos las respuestas de producto ya proporcionadas.
+NO modifiques ningún archivo de código.
 
-Mantén como supuestos explícitos, no como requisitos confirmados:
+Mantén exactamente este formato:
 
-- que exista una pantalla específica de llegada/resumen;
-- el mecanismo técnico usado para actualización sin refresco;
-- que filtrar por estado sea la única navegación;
-- cómo funciona la pertenencia o invitación al espacio;
-- si hace falta histórico o auditoría.
+## Purpose
 
-No resuelvas esos supuestos con decisiones técnicas.
+## Requirements
 
-Propón ahora el MVP en exactamente estos cinco bloques:
+### Requirement: ...
 
-1. Problema
-2. Usuarios
-3. Propuesta de valor
-4. Alcance
-5. NO-alcance
+#### Scenario: ...
 
-Sé agresivo recortando.
+- **WHEN** ...
+- **THEN** ...
 
-En "Alcance", enumera explícitamente cada capacidad incluida para poder contar cuántas propones.
+Reglas:
 
-En "NO-alcance", enumera cada exclusión y explica para cada una qué hipótesis del producto NO ayuda a validar.
+- escribe en castellano;
+- usa SHALL en la descripción de cada Requirement;
+- describe únicamente comportamiento observable desde fuera;
+- no menciones nombres de archivos, clases, funciones ni detalles internos de implementación;
+- no uses ADDED, MODIFIED ni REMOVED;
+- no inventes comportamiento que no pudimos confirmar;
+- cuando la evidencia no permita afirmar un detalle concreto, redacta el escenario de forma que no finja esa certeza;
+- mantén el alcance exclusivamente en registro, login, sesión, protección de acceso y perfil;
+- no incluyas tareas ni ninguna otra capacidad de FlowSync;
+- no propongas arreglos.
 
-No incluyas:
-- modelo de datos,
-- tablas,
-- endpoints,
-- arquitectura,
-- tecnologías,
-- diagramas,
-- requisitos técnicos.
+Corrige específicamente estos puntos detectados durante la auditoría:
 
-El documento debe seguir siendo un documento de producto, no una especificación técnica.
-```
-```
-### Prompt 6
-Recorta la propuesta anterior de 6 capacidades a 5.
+1. En logout, no limites el escenario al fallo de red: el comportamiento observado es que la sesión local termina incluso si falla la petición de cierre remoto por cualquier motivo.
 
-No elimines la capacidad de reflejar cambios de estado sin refresco manual, porque forma parte de la definición de “tiempo real” del producto.
+2. En restauración de sesión, no digas que la sesión se recupera automáticamente cuando vuelve el servidor. Si la validación falla por un error distinto de sesión inválida, el usuario queda no autenticado durante esa ejecución y una recarga posterior puede volver a intentar usar el token conservado.
 
-Elimina la capacidad que menos contribuya a validar la hipótesis principal del MVP.
+3. En login, no afirmes detalles sobre el mensaje exacto o sobre si email inexistente y contraseña incorrecta son indistinguibles si eso no quedó confirmado directamente.
 
-Devuélveme:
-1. las 5 capacidades finales;
-2. cuál eliminaste;
-3. por qué esa exclusión no impide validar la hipótesis principal.
+4. En registro con email duplicado, no afirmes un texto exacto de error si no quedó confirmado.
+
+5. No afirmes nada sobre expiración temporal de tokens, porque no quedó resuelto si es contrato o comportamiento por defecto de la biblioteca.
+
+Después de la spec añade:
+
+## Parte B
+
+### 1. Requisitos escritos y comprobados
+
+- Requisitos escritos por el agente: 6
+- Requisitos comprobados por mí abriendo el código: 6
+
+### 2. Incoherencias encontradas
+
+Incluye de forma concisa las incoherencias descubiertas en logout, restauración de sesión y la incertidumbre sobre el comportamiento exacto del login.
+
+### 3. No supe decidir si era bug o contrato
+
+Incluye al menos:
+
+- el caso en que falla la restauración por un problema distinto de una sesión inválida: el usuario queda no autenticado pero el token persiste y puede volver a intentarse tras recargar;
+
+- la ausencia de una expiración temporal explícita al crear tokens: el código revisado no permite decidir si es parte del contrato o simplemente comportamiento por defecto de la biblioteca.
+
+No resuelvas esas ambigüedades. Déjalas expresamente como cosas que el código no permite decidir.
 ```

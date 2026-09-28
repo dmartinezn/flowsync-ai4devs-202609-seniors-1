@@ -2,6 +2,7 @@
 
 Esta especificación documenta el comportamiento actual del vertical de cuentas y acceso de FlowSync: registro, inicio de sesión, cierre de sesión, protección de acceso y consulta del perfil. Describe únicamente comportamiento observable desde fuera del sistema, ajustado tras contrastar una primera versión contra el código y realizar verificaciones directas sobre la API.
 
+
 ## Requirements
 
 ### Requirement: Registro de una cuenta nueva

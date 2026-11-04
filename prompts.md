@@ -1,35 +1,44 @@
-# Prompts
+# Ejercicio 8 — Registro de prompts
 
-Aquí van **todos los prompts que lanzaste** para hacer el ejercicio, en el orden en que los
-lanzaste, con el modelo y la herramienta de cada uno.
+## Herramienta y modelo
 
-Esto no es papeleo. Lo que se revisa es **cómo pediste las cosas**, no solo lo que salió: un
-resultado flojo con un prompt bueno y un resultado flojo con un prompt vago necesitan feedback
-distinto, y sin este archivo no se distinguen.
+- Herramienta: Claude Code.
+- Modelo: Claude Opus 5.5.
+- Proveedor: Amazon Bedrock.
 
-## Cómo rellenarlo
+## Prompt utilizado
 
-- Un apartado `## Prompt N` por cada prompt.
-- **Pega el prompt tal cual lo lanzaste**, dentro del bloque de código, aunque ocupe diez líneas
-  y aunque tenga faltas. No lo reescribas para que quede bien: el que arreglaste mentalmente
-  después no es el que lanzaste.
-- Incluye también los que **no funcionaron**. Suelen ser los más útiles de leer.
-- `Modelo` y `Herramienta` en todos. Si cambiaste de una a otra a mitad, se nota aquí.
+Se utilizó exactamente el mismo prompt en los cinco intentos.
 
-Borra el ejemplo de abajo cuando escribas el primero.
+### Intentos 1, 2, 3, 4 y 5
 
----
+```text
+Añade a la capacidad tasks el endpoint DELETE /api/v1/tasks/:id, que borra una tarea y devuelve 204 sin cuerpo. Impleméntalo en el controlador que ya existe y declara su ruta junto a los demás de tasks.
 
-## Prompt 1
-
-**Modelo:** Opus 1M xHigh
-**Herramienta:** Claude Code
 
 ```
-Este es el ejemplo. Bórralo.
 
-El prompt va aquí dentro, entero y con sus saltos de línea,
-para que se sepa dónde empieza y dónde acaba.
-```
+## Metodología
 
-**Qué salió:** (opcional, una línea) funcionó a la primera / tuve que insistir / me inventó una ruta que no existe.
+1. Restaurar el repositorio a upstream/s8/start.
+2. Iniciar una nueva sesión de Claude Code.
+3. Ejecutar el mismo prompt sin mencionar el README.
+4. Verificar los cambios mediante git diff.
+5. Registrar el resultado antes del siguiente intento.
+
+## Resultado
+
+Predicción inicial: 4/5 (80 %).
+Resultado observado: 5/5 (100 %).
+
+## Registro por ejecución
+
+| Intento | Herramienta | Modelo | README actualizado |
+|---|---|---|---|
+| 1 | Claude Code | Opus 5.5 (Bedrock) | Sí |
+| 2 | Claude Code | Opus 5.5 (Bedrock) | Sí |
+| 3 | Claude Code | Opus 5.5 (Bedrock) | Sí |
+| 4 | Claude Code | Opus 5.5 (Bedrock) | Sí |
+| 5 | Claude Code | Opus 5.5 (Bedrock) | Sí |
+
+Los cinco intentos utilizaron literalmente el prompt documentado arriba, sin instrucciones adicionales para actualizar el README.

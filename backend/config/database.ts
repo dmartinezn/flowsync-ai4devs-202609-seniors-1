@@ -1,27 +1,38 @@
-import app from '@adonisjs/core/services/app'
+import pg from 'pg'
+import env from '#start/env'
 import { defineConfig } from '@adonisjs/lucid'
+
+/**
+ * El driver `pg` convierte por defecto las columnas DATE (OID 1082) en un `Date`
+ * de JavaScript a medianoche *local*. La fecha de vencimiento de una tarea es un
+ * día del calendario que el modelo trata como texto ISO (`YYYY-MM-DD`, ver
+ * `database/schema_rules.ts` y `Task.isOverdueOn`), igual que la devolvía
+ * SQLite. Se le dice al driver que la entregue tal cual, sin parsear: así no hay
+ * huso horario que pueda correr el día.
+ */
+pg.types.setTypeParser(pg.types.builtins.DATE, (value) => value)
 
 const dbConfig = defineConfig({
   /**
    * Default connection used for all queries.
    */
-  connection: 'sqlite',
+  connection: 'pg',
 
   connections: {
     /**
-     * SQLite connection (default).
+     * PostgreSQL (Docker, ver `compose.yaml`). Qué base usa cada entorno lo
+     * deciden las variables DB_*: `.env` apunta a `db` (54410) y `.env.test` a
+     * `db-test` (54411).
      */
-    sqlite: {
-      client: 'better-sqlite3',
-
+    pg: {
+      client: 'pg',
       connection: {
-        filename: app.tmpPath('db.sqlite3'),
+        host: env.get('DB_HOST'),
+        port: env.get('DB_PORT'),
+        user: env.get('DB_USER'),
+        password: env.get('DB_PASSWORD'),
+        database: env.get('DB_DATABASE'),
       },
-
-      /**
-       * Required by Knex for SQLite defaults.
-       */
-      useNullAsDefault: true,
 
       migrations: {
         /**
@@ -47,26 +58,6 @@ const dbConfig = defineConfig({
         rulesPaths: ['./database/schema_rules.js'],
       },
     },
-
-    /**
-     * PostgreSQL connection.
-     * Install package to switch: npm install pg
-     */
-    // pg: {
-    //   client: 'pg',
-    //   connection: {
-    //     host: env.get('DB_HOST'),
-    //     port: env.get('DB_PORT'),
-    //     user: env.get('DB_USER'),
-    //     password: env.get('DB_PASSWORD'),
-    //     database: env.get('DB_DATABASE'),
-    //   },
-    //   migrations: {
-    //     naturalSort: true,
-    //     paths: ['database/migrations'],
-    //   },
-    //   debug: app.inDev,
-    // },
 
     /**
      * MySQL / MariaDB connection.
